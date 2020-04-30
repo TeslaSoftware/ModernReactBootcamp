@@ -12,7 +12,9 @@ class Pokecard extends Component {
         return (
             <div className="Pokecard">
                 <h1 className="Pokecard-title">{this.props.name}</h1>
-                <img src={imgSrc} alt={this.props.name} />
+                <div className="Pokecard-image">
+                    <img src={imgSrc} alt={this.props.name} />
+                </div>                
                 <div className="Pokecard-data"> Type: {this.props.type}</div>
                 <div className="Pokecard-data">EXP: {this.props.exp} </div>
             </div>
@@ -21,8 +23,3 @@ class Pokecard extends Component {
 }
 
 export default Pokecard;
-
-//https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png
-
-//this api requires padding of leading zeros to 3 digits e.g. 1 => 001, but has nicer assets
-//https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${id}.png
