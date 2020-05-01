@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Die from './Die';
+import './RollDice.css';
 
 class RollDice extends Component{
     static defaultProps = {
@@ -16,7 +17,6 @@ class RollDice extends Component{
     }
 
     getRandomSide = () => {
-        console.log(this.props);
         return this.props.sides[Math.floor(Math.random() * this.props.sides.length)]
     }
 
@@ -33,9 +33,11 @@ class RollDice extends Component{
 
     render(){
         return (
-            <div>
-                <Die face={this.state.die1} />
-                <Die face={this.state.die2} />
+            <div className="RollDice">
+                <div className="RollDive-container">
+                    <Die face={this.state.die1} />
+                    <Die face={this.state.die2} />
+                </div>
                 <button onClick={this.roll}>Roll Dice</button>
             </div>
         )
