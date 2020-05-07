@@ -18,8 +18,13 @@ class Hangman extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { nWrong: 0, guessed: new Set(), answer: randomWord() };
+    this.state = this.getDefaultState();
     this.handleGuess = this.handleGuess.bind(this);
+    this.restart = this.restart.bind(this);
+  }
+
+  getDefaultState(){
+    return { nWrong: 0, guessed: new Set(), answer: randomWord() };
   }
 
   /** guessedWord: show current-state of word:
@@ -57,6 +62,10 @@ class Hangman extends Component {
     ));
   }
 
+  restart(){
+    this.setState(this.getDefaultState());
+  }
+
   /** render: render game */
   render() {
     const isGameOver = this.state.nWrong >= this.props.maxWrong;
@@ -70,6 +79,9 @@ class Hangman extends Component {
         <p className='Hangman-btns'>
           { isGameOver ? `You loose!!!` : this.generateButtons()}
         </p>
+        <p>
+          <button onClick={this.restart}>Restart ?</button>
+        </p>        
       </div>
     );
   }
