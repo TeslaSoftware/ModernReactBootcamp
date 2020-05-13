@@ -66,19 +66,25 @@ class Board extends Component {
 
 
     function flipCell(y, x) {
+      console.log('flipping x=' + x + ", y = "+ y)
       // if this coord is actually on board, flip it
-
       if (x >= 0 && x < ncols && y >= 0 && y < nrows) {
         board[y][x] = !board[y][x];
       }
     }
+    //flip initial cell
+    flipCell(y,x);
+    flipCell(y,x-1);
+    flipCell(y,x+1);
+    flipCell(y-1,x);
+    flipCell(y+1,x);
 
     // TODO: flip this cell and the cells around it
 
     // win when every cell is turned off
     // TODO: determine is the game has been won
-
-    //this.setState({board, hasWon});
+    const hasWon = false;
+    this.setState({board, hasWon});
   }
 
 
@@ -93,7 +99,12 @@ class Board extends Component {
     for(let y = 0; y<this.props.nrows; y++){
       let row = [];
       for(let x = 0; x<this.props.ncols; x++){
-        const cell = <Cell isLit={this.state.board[y][x]} key={`x${x}_y${y}`} />
+        const coord = `${y}-${x}`;
+        const cell = <Cell 
+                      isLit={this.state.board[y][x]} 
+                      key={coord}
+                      flipCellsAroundMe = { () => this.flipCellsAround(coord)}
+                      />
         row.push(cell);
       }
       tableBoard.push(<tr key={y}>{row}</tr>);
