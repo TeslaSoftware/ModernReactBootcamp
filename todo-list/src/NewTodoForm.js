@@ -17,7 +17,10 @@ export default class NewBoxForm extends Component {
 
     handleSubmit(event){
         event.preventDefault();
-        this.props.createTodo(this.state);
+        this.props.createTodo({
+            ...this.state,
+            id: uuid()
+        });
         this.setState({
             task: ""
         });

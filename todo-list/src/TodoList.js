@@ -5,8 +5,9 @@ import NewTodoForm from './NewTodoForm';
 export default class TodoList extends Component {
     constructor(props){
         super(props);
-        this.state = { todos: [{task: "walk the fish"}, {task: "groom chicken"}] }
+        this.state = { todos: [] }
         this.create = this.create.bind(this);
+        this.remove = this.remove.bind(this);
     }
 
     create(newTodo){
@@ -15,9 +16,20 @@ export default class TodoList extends Component {
         })
     }
 
+    remove(id){
+        this.setState({
+            todos: this.state.todos.filter(task => task.id !== id)
+        })
+    }
+
     render(){
         const todos = this.state.todos.map(todo => {
-            return( <Todo task={todo.task} />);
+            return( <Todo 
+                        task={todo.task} 
+                        key={todo.id} 
+                        todoId={todo.id}
+                        removeTodo={this.remove}
+                    />);
         })
         return(
             <div>
