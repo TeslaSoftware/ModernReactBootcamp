@@ -21,9 +21,9 @@ class Rule {
 
   freq(dice) {
     // frequencies of dice values
-    const freqs = new Map();
-    for (let d of dice) freqs.set(d, (freqs.get(d) || 0) + 1);
-    return Array.from(freqs.values());
+    const freqsMap = new Map();
+    for (let die of dice) freqsMap.set(die, (freqsMap.get(die) || 0) + 1);
+    return Array.from(freqsMap.values());
   }
 
   count(dice, val) {
@@ -36,7 +36,6 @@ class Rule {
  *
  * Used for rules like "sum of all ones"
  */
-
 class TotalOneNumber extends Rule {
   evalRoll = dice => {
     return this.val * this.count(dice, this.val);
@@ -47,7 +46,6 @@ class TotalOneNumber extends Rule {
  *
  * Used for rules like "sum of all dice when there is a 3-of-kind"
  */
-
 class SumDistro extends Rule {
   evalRoll = dice => {
     // do any of the counts meet of exceed this distro?
@@ -56,7 +54,6 @@ class SumDistro extends Rule {
 }
 
 /** Check if full house (3-of-kind and 2-of-kind) */
-
 class FullHouse {
   // TODO
 }
