@@ -64,7 +64,6 @@ class FullHouse extends Rule{
 /** Check for small straights. */
 class SmallStraight extends Rule {
   evalRoll = (dice) => {
-    console.log(dice)
     const d = new Set(dice);
     if( (d.has(2) && d.has(3) && d.has(4) && (d.has(1) || d.has(5))) ||
         (d.has(3) && d.has(4) && d.has(5) && (d.has(2) || d.has(6)))) {
