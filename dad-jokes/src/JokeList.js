@@ -10,6 +10,7 @@ export default class JokeList extends Component{
     constructor(props){
         super(props);
         this.state = { jokes: JSON.parse(window.localStorage.getItem("jokes")) || [] };
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount(){
@@ -17,6 +18,10 @@ export default class JokeList extends Component{
         if(this.state.jokes.length === 0){
             this.getJokes();
         }        
+    }
+
+    handleClick(){
+        this.getJokes();
     }
 
     async getJokes(){
@@ -33,8 +38,13 @@ export default class JokeList extends Component{
                 id: uuid()
             });
         }
-        this.setState({ jokes })
-        window.localStorage.setItem("jokes", JSON.stringify(jokes));
+        this.setState(oldState => { 
+            return {
+                jokes : [...oldState.jokes, ...jokes ]
+            }
+        },
+        () => window.localStorage.setItem('jokes', JSON.stringify(this.state.jokes))
+        );
     }
 
     handleVote(id, delta){
@@ -42,7 +52,9 @@ export default class JokeList extends Component{
             jokes: oldState.jokes.map(joke => {
                 return joke.id === id ? {...joke, votes: joke.votes + delta}: joke
             })
-        }));
+        }),
+        () => window.localStorage.setItem('jokes', JSON.stringify(this.state.jokes))
+        );
     }
 
     render(){
@@ -51,7 +63,7 @@ export default class JokeList extends Component{
                 <div className="JokeList-sidebar">
                     <h1 className="JokeList-title"><span>Dad</span> Jokes</h1>
                     <img src='https://assets.dryicons.com/uploads/icon/svg/8927/0eb14c71-38f2-433a-bfc8-23d9c99b3647.svg' alt="Laughing emoji" />
-                    <button className="JokeList-getmore">New Jokes</button>
+                    <button onClick={this.handleClick} className="JokeList-getmore">New Jokes</button>
                 </div>                
                 <div className="JokeList-jokes">
                     {this.state.jokes.map(j => {
