@@ -21,7 +21,7 @@ export default class JokeList extends Component{
     }
 
     handleClick(){
-        this.getJokes();
+        this.setState({ loading: true}, this.getJokes);
     }
 
     async getJokes(){
@@ -40,7 +40,8 @@ export default class JokeList extends Component{
         }
         this.setState(oldState => { 
             return {
-                jokes : [...oldState.jokes, ...jokes ]
+                jokes : [...oldState.jokes, ...jokes ],
+                loading: false
             }
         },
         () => window.localStorage.setItem('jokes', JSON.stringify(this.state.jokes))
@@ -58,6 +59,15 @@ export default class JokeList extends Component{
     }
 
     render(){
+        if(this.state.loading){
+            return (
+                <div className="JokeList-spinner">
+                    <i className="fas fa-8x fa-laugh fa-spin"/>
+                    <h1>Loading...</h1>
+                </div>
+            )
+        }
+
         return(
             <div className="JokeList">
                 <div className="JokeList-sidebar">
