@@ -11,6 +11,7 @@ export default class JokeList extends Component{
         super(props);
         this.state = { jokes: JSON.parse(window.localStorage.getItem("jokes")) || [] };
         this.handleClick = this.handleClick.bind(this);
+        this.seenJokes = new Set(this.state.jokes.map(j => j.text));
     }
 
     componentDidMount(){
@@ -25,27 +26,40 @@ export default class JokeList extends Component{
     }
 
     async getJokes(){
-        let jokes = [];
-        while(jokes.length < this.props.numJokesToGet){ 
-            const res = await axios.get('https://icanhazdadjoke.com/', {
-                headers: {
-                    Accept: "application/json"
+        try{
+            const jokes = [];
+            while(jokes.length < this.props.numJokesToGet){ 
+                const res = await axios.get('https://icanhazdadjoke.com/', {
+                    headers: {
+                        Accept: "application/json"
+                    }
+                });
+                const newJoke = res.data.joke;
+                if(!this.seenJokes.has(newJoke)){
+                    jokes.push({
+                        text: newJoke, 
+                        votes: 0,
+                        id: uuid()
+                    });
                 }
-            });
-            jokes.push({
-                text: res.data.joke, 
-                votes: 0,
-                id: uuid()
-            });
-        }
-        this.setState(oldState => { 
-            return {
-                jokes : [...oldState.jokes, ...jokes ],
-                loading: false
+                else{
+                    console.log('found duplicate')
+                }
             }
-        },
-        () => window.localStorage.setItem('jokes', JSON.stringify(this.state.jokes))
-        );
+            this.setState(oldState => { 
+                return {
+                    jokes : [...oldState.jokes, ...jokes ],
+                    loading: false
+                }
+            },
+            () => window.localStorage.setItem('jokes', JSON.stringify(this.state.jokes))
+            );
+        }
+        catch(err){
+            alert(err);
+            this.setState({loading: false});
+        }
+       
     }
 
     handleVote(id, delta){
