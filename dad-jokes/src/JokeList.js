@@ -42,9 +42,6 @@ export default class JokeList extends Component{
                         id: uuid()
                     });
                 }
-                else{
-                    console.log('found duplicate')
-                }
             }
             this.setState(oldState => { 
                 return {
