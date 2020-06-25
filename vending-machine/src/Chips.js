@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import Message from "./Message";
 import chipsImg from "./Chips.png";
 
@@ -40,6 +41,7 @@ class Chips extends Component {
            Go back placeholder
           </h1>
         </Message>
+        <Link to="/">Back</Link>
         {bags}
       </div>
     );

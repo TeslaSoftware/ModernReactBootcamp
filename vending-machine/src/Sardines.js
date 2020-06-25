@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import Message from "./Message";
 import "./Sardines.css";
 
@@ -15,6 +16,7 @@ class Sardines extends Component {
         <Message>
           <h1>you don't eat the sardines. the sardines, they eat you!</h1>
         </Message>
+        <Link to="/">Back</Link>
       </div>
     );
   }
