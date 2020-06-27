@@ -1,3 +1,8 @@
 .App {
   text-align: center;
 }
+
+.back-btn{
+  color: rgba(69, 90, 100, 1);
+  font-weight: 900;
+}

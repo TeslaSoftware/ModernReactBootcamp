@@ -41,7 +41,7 @@ class Chips extends Component {
            Go back placeholder
           </h1>
         </Message>
-        <Link to="/">Back</Link>
+        <Link className="back-btn" to="/">Back</Link>
         {bags}
       </div>
     );
