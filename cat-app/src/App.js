@@ -2,6 +2,7 @@
 import React  from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
+import CatDetails from './CatDetails';
 import CatList from './CatList';
 import Coby from './Images/Coby.jpg';
 import Frisby from './Images/Frisby.jpg';
@@ -45,8 +46,19 @@ class App extends React.Component {
   };
 
   render(){
+    const getCat = props => {
+      let name = props.match.params.name;
+      let currentCat = this.props.cats.find(
+        cat => cat.name.toLowerCase() === name.toLowerCase()
+      );
+      return <CatDetails {...props} cat={ currentCat } />
+    }
+
     return (
-      <Route path='/cats' render={() => <CatList cats={this.props.cats} /> } />
+      <Switch>
+        <Route exact path='/cats' render={() => <CatList cats={this.props.cats} /> } />
+        <Route path='/cats/:name' render={getCat} />
+      </Switch>
     );
   }
   
