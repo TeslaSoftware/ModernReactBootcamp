@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React  from 'react';
 import { Switch, Route } from 'react-router-dom';
+import Navbar from './Navbar';
 import './App.css';
 import CatDetails from './CatDetails';
 import CatList from './CatList';
@@ -55,10 +56,14 @@ class App extends React.Component {
     }
 
     return (
-      <Switch>
-        <Route exact path='/cats' render={() => <CatList cats={this.props.cats} /> } />
-        <Route path='/cats/:name' render={getCat} />
-      </Switch>
+      <div>
+        <Navbar cats={this.props.cats} />
+        <Switch>
+          <Route exact path='/cats' render={() => <CatList cats={this.props.cats} /> } />
+          <Route path='/cats/:name' render={getCat} />
+        </Switch>
+      </div>
+      
     );
   }
   
