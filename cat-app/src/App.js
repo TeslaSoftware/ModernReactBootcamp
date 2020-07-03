@@ -1,10 +1,8 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React  from 'react';
-import { Switch, Route } from 'react-router-dom';
 import Navbar from './Navbar';
 import './App.css';
-import CatDetails from './CatDetails';
-import CatList from './CatList';
+import Routes from './Routes';
+
 import Coby from './Images/Coby.jpg';
 import Frisby from './Images/Frisby.jpg';
 import Luna from './Images/Luna.jpg';
@@ -47,23 +45,12 @@ class App extends React.Component {
   };
 
   render(){
-    const getCat = props => {
-      let name = props.match.params.name;
-      let currentCat = this.props.cats.find(
-        cat => cat.name.toLowerCase() === name.toLowerCase()
-      );
-      return <CatDetails {...props} cat={ currentCat } />
-    }
 
     return (
       <div>
         <Navbar cats={this.props.cats} />
-        <Switch>
-          <Route exact path='/cats' render={() => <CatList cats={this.props.cats} /> } />
-          <Route path='/cats/:name' render={getCat} />
-        </Switch>
-      </div>
-      
+        <Routes cats={this.props.cats}/>
+      </div>      
     );
   }
   
