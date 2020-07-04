@@ -49,7 +49,9 @@ class App extends React.Component {
     return (
       <div>
         <Navbar cats={this.props.cats} />
-        <Routes cats={this.props.cats}/>
+        <div className="container">
+          <Routes cats={this.props.cats}/>
+        </div>
       </div>      
     );
   }

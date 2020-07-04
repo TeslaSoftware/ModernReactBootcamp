@@ -6,7 +6,6 @@ export default class CatDetails extends Component {
     render() {
         let {cat} = this.props;
         return (
-            <div className="container">
                 <div className="DogDetails row justify-content-center mt-5">
                     <div className="col-11 col-lg-5">
                     <div className="CatDetails-card card">
@@ -26,11 +25,8 @@ export default class CatDetails extends Component {
                             <Link to="/cats" className="btn btn-info">Go back</Link>
                         </div>            
                     </div>
-                   
-                    
                     </div>
                 </div>
-            </div>
             
         )
     }
