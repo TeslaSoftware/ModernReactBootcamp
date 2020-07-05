@@ -12,7 +12,7 @@ class CatList extends Component {
                         <div className="Cat col-lg-4 text-center" key={cat.name}>
                             <img src={cat.src} alt={`cat ${cat.name}`} />
                             <h3>
-                                <Link to={`/cats/${cat.name}`}>{cat.name}</Link>
+                                <Link className="underline" to={`/cats/${cat.name}`}>{cat.name}</Link>
                             </h3>                            
                         </div>
                     ))}                       
