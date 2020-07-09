@@ -1,4 +1,5 @@
 import React from 'react';
+import './ColorBox.css';
 
 export default class ColorBox extends React.Component {
     render() {
