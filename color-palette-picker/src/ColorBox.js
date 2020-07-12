@@ -22,6 +22,10 @@ export default class ColorBox extends React.Component {
             <CopyToClipboard text={background} onCopy={this.changeCopyState}>
                 <div style={{ background }} className="ColorBox">
                     <div style={{ background }} className={`copy-overlay ${this.state.copied ? 'show' : ''}`}></div>
+                    <div className={`copy-msg ${this.state.copied ? 'show' : ''}`}>
+                        <h1>copied!</h1>
+                        <p>{this.props.background}</p>
+                    </div>
                     <div className="copy-container">
                         <div className="box-content">
                             <span>{name}</span>
