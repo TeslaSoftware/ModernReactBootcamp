@@ -5,12 +5,12 @@ const styles = {
     root: {
         backgroundColor: 'white',
         border: '1px solid black',
-        borderRadious: '5px',
+        borderRadius: '5px',
         padding: '0.5rem',
         position: 'relative',
         overflow: 'hidden',
-        '&:hover' :{
-            cursoer: 'pointer'
+        '&:hover': {
+            cursor: 'pointer'
         }
     },
     colors: {
