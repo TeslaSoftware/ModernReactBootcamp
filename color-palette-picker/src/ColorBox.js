@@ -18,7 +18,7 @@ export default class ColorBox extends React.Component {
     }
 
     render() {
-        const {name, background, moreUrl} = this.props;
+        const {name, background, moreUrl, showLink} = this.props;
         return(
             <CopyToClipboard text={background} onCopy={this.changeCopyState}>
                 <div style={{ background }} className="ColorBox">
@@ -34,7 +34,7 @@ export default class ColorBox extends React.Component {
                         <button className="copy-button">COPY</button>
                     </div>  
 
-                    {this.props.showingAllColors && (
+                    {showLink && (
                         <Link to={moreUrl} onClick={(event) => event.stopPropagation()}>
                             <span className="see-more">More</span> 
                         </Link> 
