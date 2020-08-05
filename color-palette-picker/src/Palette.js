@@ -1,10 +1,11 @@
 import React from 'react';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
+import PaletteFooter from './PaletteFooter';
 import './Palette.css';
 
 export default class Palette extends React.Component {
-      constructor(props) {
+    constructor(props) {
         super(props);
         this.state = {
             level: 500,
@@ -39,15 +40,16 @@ export default class Palette extends React.Component {
         ));
         return(
             <div className="Palette">
-                <Navbar level={level} changeLevel={this.changeLevel} handleChange={this.changeFormat}/>
+                <Navbar 
+                    level={level} 
+                    changeLevel={this.changeLevel} 
+                    handleChange={this.changeFormat}
+                    showingAllColors
+                />
                 <div className="Palette-colors">
                     {colorBoxes}
                 </div>
-                <footer className="Palette-footer">
-                    {paletteName}
-                    <span className="emoji">{emoji}</span>
-                </footer>
-                {/*TODO: Footer*/}
+                <PaletteFooter paletteName={paletteName} emoji={emoji} />
             </div>
         )
     }
