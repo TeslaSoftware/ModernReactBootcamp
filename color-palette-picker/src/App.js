@@ -5,6 +5,7 @@ import seedColors from './seedColors';
 import { generatePalette } from './colorHelpers';
 import PaletteList from './PaletteList';
 import SingleColorPalette from './SingleColorPalette';
+import './App.css';
 
 class App extends React.Component {
 
